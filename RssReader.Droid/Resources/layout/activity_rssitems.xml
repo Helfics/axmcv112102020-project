@@ -7,19 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Rss Reader"
+        android:id="@+id/rssitems_titleTextview"
         android:gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <ListView
-        android:layout_weight="1"
-        android:id="@+id/main_rsssourcesListview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <Button
-        android:text="Add source"
-        android:id="@+id/main_addBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rssitems_itemsRecyclerview"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"/>
+
 </LinearLayout>

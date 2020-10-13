@@ -7,19 +7,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
-        android:text="Rss Reader"
+        android:text="Add Rss Source"
         android:gravity="center_horizontal"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <ListView
-        android:layout_weight="1"
-        android:id="@+id/main_rsssourcesListview"
+
+    <EditText
+        android:inputType="text"
+        android:hint="Title"
+        android:id="@+id/addrsssource_titleEdittext"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:inputType="textUri"
+        android:hint="Url"
+        android:id="@+id/addrsssource_urlEdittext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <Button
-        android:text="Add source"
-        android:id="@+id/main_addBtn"
+        android:text="Save"
+        android:id="@+id/addrsssource_saveBtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 </LinearLayout>
