@@ -2,6 +2,7 @@
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
+using Android.Support.Design.Widget;
 using Android.Support.V7.App;
 using Android.Widget;
 using RssReader.Common.Services;
@@ -16,7 +17,8 @@ namespace RssReader.Droid
 
         private RssReaderService rssReaderService;
 
-        private Button addBtn;
+        private RelativeLayout rootview;
+        private FloatingActionButton addBtn;
         private ListView rssSourcesListView;
         private RssSourceAdapter rssSourceAdapter;
 
@@ -32,6 +34,10 @@ namespace RssReader.Droid
                         var item = rssReaderService.GetRssSourceById(id);
 
                         rssSourceAdapter.AddAndRefresh(item);
+
+                        Snackbar
+                           .Make(rootview, "The source has been saved", Snackbar.LengthShort)
+                            .Show();
                     }
 
                     break;
@@ -49,7 +55,16 @@ namespace RssReader.Droid
 
             SetContentView(Resource.Layout.activity_main);
 
-            addBtn = FindViewById<Button>(Resource.Id.main_addBtn);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+
+            SetSupportActionBar(toolbar);
+
+            SupportActionBar.Title = "Rss Reader";
+
+
+            rootview = FindViewById<RelativeLayout>(Resource.Id.main_rootview);
+
+            addBtn = FindViewById<FloatingActionButton>(Resource.Id.main_addBtn);
             addBtn.Click += AddBtn_Click;
 
             rssSourcesListView = FindViewById<ListView>(Resource.Id.main_rsssourcesListview);

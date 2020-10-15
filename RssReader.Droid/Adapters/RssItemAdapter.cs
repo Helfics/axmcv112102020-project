@@ -1,7 +1,9 @@
 ﻿using Android.App;
+using Android.Content;
 using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using FFImageLoading;
 using RssReader.Common.Entities;
 using System.Collections.Generic;
 
@@ -41,6 +43,29 @@ namespace RssReader.Droid.Adapters
             var titleTextview = rssItemViewHolder.ItemView.FindViewById<TextView>(Resource.Id.rssitem_title);
 
             titleTextview.Text = data[position].Title;
+
+            var descriptionTextview = rssItemViewHolder.ItemView.FindViewById<TextView>(Resource.Id.rssitem_description);
+
+            descriptionTextview.Text = data[position].Description;
+
+            var imageView = rssItemViewHolder.ItemView.FindViewById<ImageView>(Resource.Id.rssitem_image);
+
+            ImageService
+                .Instance
+                .LoadUrl(data[position].ImageUrl)
+                .LoadingPlaceholder("loadingplaceholder",FFImageLoading.Work.ImageSource.CompiledResource)
+                .ErrorPlaceholder("errorplaceholder", FFImageLoading.Work.ImageSource.CompiledResource)
+                .Into(imageView);
+
+            rssItemViewHolder.ItemView.Click += (s,e) =>
+            {
+                if (!string.IsNullOrEmpty(data[position].Url))
+                {
+                    var intent = new Intent(Intent.ActionView, Android.Net.Uri.Parse(data[position].Url));
+
+                    context.StartActivity(intent);
+                }
+            };
         }
     }
 }

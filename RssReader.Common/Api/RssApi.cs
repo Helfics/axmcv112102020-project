@@ -36,7 +36,8 @@ namespace RssReader.Common.Api
                             Title = x.Title,
                             Description = x.Summary,
                             ImageUrl = x.ImageUrl,
-                            PubDate = x.PublishDate
+                            PubDate = x.PublishDate,
+                            Url = x.FeedUrl
                         })
                         .ToList();
             }

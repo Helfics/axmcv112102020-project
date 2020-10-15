@@ -1,13 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
-    <TextView
-        android:id="@+id/rssitem_title"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+<FrameLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:padding="10dp">
+	<android.support.v7.widget.CardView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		app:cardElevation="4dp"
+		android:padding="10dp">
+		<LinearLayout
+			android:orientation="vertical"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content">
+
+			<TextView
+				android:textAppearance="?android:attr/textAppearanceMedium"
+				android:padding="10dp"
+				android:id="@+id/rssitem_title"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+
+			<ImageView
+				android:contentDescription="image"
+				android:padding="10dp"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:scaleType="centerCrop"
+				android:id="@+id/rssitem_image"/>
+
+			<TextView
+				android:padding="10dp"
+				android:textAppearance="?android:attr/textAppearanceSmall"
+				android:id="@+id/rssitem_description"
+				android:justificationMode="inter_word"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"/>
+		</LinearLayout>
+	</android.support.v7.widget.CardView>
+</FrameLayout>

@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:text="Rss Reader"
-        android:gravity="center_horizontal"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_width="match_parent"
+<RelativeLayout
+	android:id="@+id/main_rootview"
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent">
+
+	<LinearLayout
+		android:orientation="vertical"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent">
+		<android.support.v7.widget.Toolbar
+		android:id="@+id/toolbar"
+		
+		android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+		
+		android:background="?android:attr/colorPrimary"
+		android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <ListView
-        android:layout_weight="1"
-        android:id="@+id/main_rsssourcesListview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <Button
-        android:text="Add source"
-        android:id="@+id/main_addBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+		<ListView
+			android:layout_weight="1"
+			android:id="@+id/main_rsssourcesListview"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"/>
+	</LinearLayout>
+
+	<android.support.design.widget.FloatingActionButton
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_alignParentBottom="true"
+		android:layout_alignParentRight="true"
+		android:layout_marginRight="20dp"
+		android:layout_marginBottom="20dp"
+		android:src="@mipmap/ic_add"
+		android:id="@+id/main_addBtn" />
+
+</RelativeLayout>

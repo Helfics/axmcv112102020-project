@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.App;
 using Android.Support.V7.Widget;
+using Android.Views;
 using Android.Widget;
 using RssReader.Common.Api;
 using RssReader.Common.Services;
@@ -18,7 +19,6 @@ namespace RssReader.Droid
     {
         private RssReaderService rssReaderService;
 
-        private TextView titleTextview;
         private RecyclerView itemsRecyclerview;
 
         protected override async void OnCreate(Bundle savedInstanceState)
@@ -29,7 +29,13 @@ namespace RssReader.Droid
 
             SetContentView(Resource.Layout.activity_rssitems);
 
-            titleTextview = FindViewById<TextView>(Resource.Id.rssitems_titleTextview);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+
+            SetSupportActionBar(toolbar);
+
+            SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+
             itemsRecyclerview = FindViewById<RecyclerView>(Resource.Id.rssitems_itemsRecyclerview);
 
             itemsRecyclerview.SetLayoutManager(new LinearLayoutManager(this));
@@ -44,7 +50,7 @@ namespace RssReader.Droid
             {
                 var item = rssReaderService.GetRssSourceById(id);
 
-                titleTextview.Text = item.Title;
+                SupportActionBar.Title = item.Title;
                 
                 var items = await rssReaderService.GetAllRssItems(item.Url);
                 
@@ -52,6 +58,17 @@ namespace RssReader.Droid
 
                 itemsRecyclerview.SetAdapter(rssItemAdapter);
             }
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+            {
+                Finish();
+                return true;
+            }
+
+            return base.OnOptionsItemSelected(item);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
