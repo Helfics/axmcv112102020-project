@@ -45,6 +45,12 @@ namespace RssReader.Common.Repositories
             }
         }
 
-
+        public void Delete(int id)
+        {
+            using (var cnx = new SQLiteConnection(connectionString))
+            {
+                cnx.Table<RssSource>().Delete(x => x.Id == id);
+            }
+        }
     }
 }

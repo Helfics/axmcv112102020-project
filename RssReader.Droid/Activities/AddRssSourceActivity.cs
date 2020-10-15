@@ -12,7 +12,7 @@ namespace RssReader.Droid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class AddRssSourceActivity : AppCompatActivity
     {
-        private RssSourceService rssSourceService;
+        private RssReaderService rssReaderService;
 
         private EditText titleEdittext;
         private EditText urlEditText;
@@ -20,7 +20,7 @@ namespace RssReader.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            rssSourceService = new RssSourceService(Constants.ConnectionString);
+            rssReaderService = new RssReaderService(Constants.ConnectionString);
 
             base.OnCreate(savedInstanceState);
 
@@ -35,7 +35,7 @@ namespace RssReader.Droid
 
         private void SaveBtn_Click(object sender, System.EventArgs e)
         {
-            var id = rssSourceService.Add(titleEdittext.Text, urlEditText.Text);
+            var id = rssReaderService.AddRssSource(titleEdittext.Text, urlEditText.Text);
 
             var intent = new Intent();
             

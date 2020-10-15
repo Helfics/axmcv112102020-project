@@ -1,4 +1,5 @@
-﻿using RssReader.Common.Entities;
+﻿using Microsoft.Toolkit.Parsers.Rss;
+using RssReader.Common.Entities;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -11,24 +12,33 @@ namespace RssReader.Common.Api
 {
     public class RssApi
     {
+        private HttpClient httpClient;
+
+        public RssApi()
+        {
+            httpClient = new HttpClient();
+        }
+
         public async Task<List<RssItem>> Get(string url)
         {
-            using (var httpClient = new HttpClient())
+            using (var response = await httpClient.GetAsync(url))
             {
-                using (var response = await httpClient.GetAsync(url))
-                {
-                    var content = await response.Content.ReadAsStringAsync();
+                response.EnsureSuccessStatusCode();
 
-                    return XDocument
+                var content = await response.Content.ReadAsStringAsync();
+
+                var parser = new RssParser();
+
+                return parser
                         .Parse(content)
-                        .Descendants("item")
                         .Select(x => new RssItem
                         {
-                            Title = x.Element("title").Value,
-                            Description = x.Element("description").Value
+                            Title = x.Title,
+                            Description = x.Summary,
+                            ImageUrl = x.ImageUrl,
+                            PubDate = x.PublishDate
                         })
                         .ToList();
-                }
             }
         }
     }

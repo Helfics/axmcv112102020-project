@@ -6,6 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
+    <PackageReference Include="Microsoft.Toolkit.Parsers" Version="6.1.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Services\Exceptions\" />
+  </ItemGroup>
 </Project>

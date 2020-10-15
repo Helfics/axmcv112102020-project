@@ -14,7 +14,7 @@ namespace RssReader.Droid
     {
         private const int ADD_RSS_SOURCE_REQUEST = 1;
 
-        private RssSourceService rssSourceService;
+        private RssReaderService rssReaderService;
 
         private Button addBtn;
         private ListView rssSourcesListView;
@@ -29,7 +29,7 @@ namespace RssReader.Droid
 
                     if (id != -1)
                     {
-                        var item = rssSourceService.GetById(id);
+                        var item = rssReaderService.GetRssSourceById(id);
 
                         rssSourceAdapter.AddAndRefresh(item);
                     }
@@ -41,7 +41,7 @@ namespace RssReader.Droid
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
-            rssSourceService = new RssSourceService(Constants.ConnectionString);
+            rssReaderService = new RssReaderService(Constants.ConnectionString);
 
             base.OnCreate(savedInstanceState);
 
@@ -53,7 +53,7 @@ namespace RssReader.Droid
             addBtn.Click += AddBtn_Click;
 
             rssSourcesListView = FindViewById<ListView>(Resource.Id.main_rsssourcesListview);
-            rssSourceAdapter = new RssSourceAdapter(this, rssSourceService.GetAll());
+            rssSourceAdapter = new RssSourceAdapter(this, rssReaderService.GetAllRssSources());
             rssSourcesListView.Adapter = rssSourceAdapter;
             rssSourcesListView.ItemClick += RssSourcesListView_ItemClick;
         }

@@ -16,14 +16,14 @@ namespace RssReader.Droid
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
     public class RssItemsActivity : AppCompatActivity
     {
-        private RssSourceService rssSourceService;
+        private RssReaderService rssReaderService;
 
         private TextView titleTextview;
         private RecyclerView itemsRecyclerview;
 
         protected override async void OnCreate(Bundle savedInstanceState)
         {
-            rssSourceService = new RssSourceService(Constants.ConnectionString);
+            rssReaderService = new RssReaderService(Constants.ConnectionString);
 
             base.OnCreate(savedInstanceState);
 
@@ -42,11 +42,11 @@ namespace RssReader.Droid
 
             if (id != -1)
             {
-                var item = rssSourceService.GetById(id);
+                var item = rssReaderService.GetRssSourceById(id);
 
                 titleTextview.Text = item.Title;
-
-                var items = await new RssApi().Get(item.Url);
+                
+                var items = await rssReaderService.GetAllRssItems(item.Url);
                 
                 var rssItemAdapter = new RssItemAdapter(this, items);
 
