@@ -2,7 +2,7 @@
 using System;
 using UIKit;
 
-namespace RssReader.IOS
+namespace RssReader.IOS.ViewControllers
 {
     public partial class ViewController : UIViewController
     {
