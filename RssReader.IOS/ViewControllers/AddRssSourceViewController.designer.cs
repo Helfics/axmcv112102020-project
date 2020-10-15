@@ -16,6 +16,10 @@ namespace RssReader.IOS.ViewControllers
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton savebtn { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextField titletextfield { get; set; }
 
         [Outlet]
@@ -24,6 +28,11 @@ namespace RssReader.IOS.ViewControllers
 
         void ReleaseDesignerOutlets ()
         {
+            if (savebtn != null) {
+                savebtn.Dispose ();
+                savebtn = null;
+            }
+
             if (titletextfield != null) {
                 titletextfield.Dispose ();
                 titletextfield = null;

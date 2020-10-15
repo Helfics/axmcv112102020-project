@@ -72,6 +72,9 @@
       <PackageReference Include="sqlite-net-pcl">
         <Version>1.7.335</Version>
       </PackageReference>
+      <PackageReference Include="Microsoft.Toolkit.Parsers">
+        <Version>6.1.1</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -120,6 +123,7 @@
     <ItemGroup>
         <Folder Include="Resources\" />
         <Folder Include="ViewControllers\" />
+        <Folder Include="Adapters\" />
     </ItemGroup>
     <ItemGroup>
         <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -142,6 +146,13 @@
           <DependentUpon>AddRssSourceViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Constants.cs" />
+        <Compile Include="Adapters\RssSourceTableViewDataSource.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\RssReader.Common\RssReader.Common.csproj">
+        <Project>{7FC946D4-28D9-46B8-8AA8-AC085E2866C7}</Project>
+        <Name>RssReader.Common</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
