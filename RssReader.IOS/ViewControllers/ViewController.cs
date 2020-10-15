@@ -21,16 +21,24 @@ namespace RssReader.IOS.ViewControllers
         {
             base.ViewDidLoad();
 
-            rsssourceAdapter = new RssSourceTableViewSource(rssReaderService.GetAllRssSources());
+            rsssourceAdapter = new RssSourceTableViewSource(this, rssReaderService.GetAllRssSources());
 
             rsssourcestableview.Source = rsssourceAdapter;
         }
 
         public override void PrepareForSegue(UIStoryboardSegue segue, NSObject sender)
         {
-            var ctrl = segue.DestinationViewController as AddRssSourceViewController;
+            switch (segue.DestinationViewController)
+            {
+                case AddRssSourceViewController arsvc:
+                    arsvc.OnSuccess = OnRssSourceAdded;
+                    break;
 
-            ctrl.OnSuccess = OnRssSourceAdded;
+                case RssItemsViewController rivc:
+                    var item = rsssourceAdapter[rsssourcestableview.IndexPathForSelectedRow.Row];
+                    rivc.Id = item.Id;
+                    break;
+            }
 
             base.PrepareForSegue(segue, sender);
         }

@@ -146,7 +146,12 @@
           <DependentUpon>AddRssSourceViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Constants.cs" />
-        <Compile Include="Adapters\RssSourceTableViewDataSource.cs" />
+        <Compile Include="Adapters\RssSourceTableViewSource.cs" />
+        <Compile Include="ViewControllers\RssItemsViewController.cs" />
+        <Compile Include="ViewControllers\RssItemsViewController.designer.cs">
+          <DependentUpon>RssItemsViewController.cs</DependentUpon>
+        </Compile>
+        <Compile Include="Adapters\RssItemTableViewSource.cs" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\RssReader.Common\RssReader.Common.csproj">
