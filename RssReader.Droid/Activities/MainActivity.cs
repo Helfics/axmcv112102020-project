@@ -79,13 +79,49 @@ namespace RssReader.Droid
             rssSourceAdapter = new RssSourceAdapter(this, rssReaderService.GetAllRssSources());
             rssSourcesListView.Adapter = rssSourceAdapter;
             rssSourcesListView.ItemClick += RssSourcesListView_ItemClick;
+
+            navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
         }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.main_menu, menu);
+
+            return base.OnCreateOptionsMenu(menu);
+        }
+
 
         public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            drawer.OpenDrawer(navigationView);
+            if (item.ItemId == Android.Resource.Id.Home)
+            {
+                drawer.OpenDrawer(navigationView);
+            }
+            else if (item.ItemId == Resource.Id.mainmenu_add)
+            {
+                var intent = new Intent(this, typeof(AddRssSourceActivity));
+
+                StartActivityForResult(intent, ADD_RSS_SOURCE_REQUEST);
+            }
+
             return base.OnOptionsItemSelected(item);
         }
+
+
+
+        private void NavigationView_NavigationItemSelected(object sender, NavigationView.NavigationItemSelectedEventArgs e)
+        {
+            if (e.MenuItem.ItemId == Resource.Id.navmenu_add)
+            {
+                var intent = new Intent(this, typeof(AddRssSourceActivity));
+
+                StartActivityForResult(intent, ADD_RSS_SOURCE_REQUEST);
+            }
+
+            drawer.CloseDrawer(navigationView);
+        }
+
+      
 
         private void RssSourcesListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {

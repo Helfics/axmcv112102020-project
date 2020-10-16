@@ -128,6 +128,11 @@
       <Generator></Generator>
     </AndroidResource>
     <AndroidResource Include="Resources\menu\nav_menu.xml" />
+    <AndroidResource Include="Resources\layout\navigationview_header.xml">
+      <SubType></SubType>
+      <Generator></Generator>
+    </AndroidResource>
+    <AndroidResource Include="Resources\menu\main_menu.xml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />

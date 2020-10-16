@@ -6,5 +6,6 @@
 			android:id="@+id/navmenu_add"
 			android:icon="@mipmap/ic_add"
 			android:title="Add Rss Source"/>
+
 	</group>
 </menu>
