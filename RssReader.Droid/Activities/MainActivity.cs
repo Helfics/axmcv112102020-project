@@ -9,6 +9,7 @@ using Android.Views;
 using Android.Widget;
 using RssReader.Common.Services;
 using RssReader.Droid.Adapters;
+using static Android.Widget.AdapterView;
 
 namespace RssReader.Droid
 {
@@ -81,6 +82,34 @@ namespace RssReader.Droid
             rssSourcesListView.ItemClick += RssSourcesListView_ItemClick;
 
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
+
+            RegisterForContextMenu(rssSourcesListView);
+        }
+
+        public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
+        {
+            menu.Add(0, 1, 0, "Delete");
+        }
+
+        public override bool OnContextItemSelected(IMenuItem item)
+        {
+            var menuInfo = (AdapterContextMenuInfo)item.MenuInfo;
+            var position = menuInfo.Position;
+
+            if (item.ItemId == 1)
+            {
+                var rssSource = rssSourceAdapter[position];
+
+                rssReaderService.DeleteRssSource(rssSource.Id);
+
+                rssSourceAdapter = new RssSourceAdapter(this, rssReaderService.GetAllRssSources());
+
+                rssSourcesListView.Adapter = rssSourceAdapter;
+
+                return true;
+            }
+
+            return base.OnContextItemSelected(item);
         }
 
         public override bool OnCreateOptionsMenu(IMenu menu)
