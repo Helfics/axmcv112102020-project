@@ -3,7 +3,9 @@ using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.V4.Widget;
 using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using RssReader.Common.Services;
 using RssReader.Droid.Adapters;
@@ -16,11 +18,12 @@ namespace RssReader.Droid
         private const int ADD_RSS_SOURCE_REQUEST = 1;
 
         private RssReaderService rssReaderService;
-
+        private DrawerLayout drawer;
         private RelativeLayout rootview;
         private FloatingActionButton addBtn;
         private ListView rssSourcesListView;
         private RssSourceAdapter rssSourceAdapter;
+        private NavigationView navigationView;
 
         protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
         {
@@ -61,7 +64,12 @@ namespace RssReader.Droid
 
             SupportActionBar.Title = "Rss Reader";
 
+            SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetHomeAsUpIndicator(Android.Resource.Drawable.IcMenuMore);
 
+            navigationView = FindViewById<NavigationView>(Resource.Id.main_navigationview);
+            drawer = FindViewById<DrawerLayout>(Resource.Id.main_drawer);
             rootview = FindViewById<RelativeLayout>(Resource.Id.main_rootview);
 
             addBtn = FindViewById<FloatingActionButton>(Resource.Id.main_addBtn);
@@ -71,6 +79,12 @@ namespace RssReader.Droid
             rssSourceAdapter = new RssSourceAdapter(this, rssReaderService.GetAllRssSources());
             rssSourcesListView.Adapter = rssSourceAdapter;
             rssSourcesListView.ItemClick += RssSourcesListView_ItemClick;
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            drawer.OpenDrawer(navigationView);
+            return base.OnOptionsItemSelected(item);
         }
 
         private void RssSourcesListView_ItemClick(object sender, AdapterView.ItemClickEventArgs e)
