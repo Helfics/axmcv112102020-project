@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Foundation;
 using RssReader.Common.Entities;
+using RssReader.IOS.ViewControllers;
 using UIKit;
 
 namespace RssReader.IOS.Adapters
@@ -27,6 +28,23 @@ namespace RssReader.IOS.Adapters
             cell.DetailTextLabel.Text = $"Created at {data[indexPath.Row].CreatedAt:dd/MM/yyyy}";
 
             return cell;
+        }
+
+        public override void CommitEditingStyle(UITableView tableView, UITableViewCellEditingStyle editingStyle, NSIndexPath indexPath)
+        {
+            if (editingStyle == UITableViewCellEditingStyle.Delete)
+            {
+                var item = data[indexPath.Row];
+
+                data.Remove(item);
+
+                // ICI prevenir l'exterieux
+                // Event deleted TableViewSource
+                // On recupere une callback depuis le contructeur genre OnDeleted
+                // Soit on caste ou on recupere directement un ViewController au lieu d'un UIViewController
+
+                (context as ViewController).OnRssSourceDeleted(item);
+            }
         }
 
         public override nint RowsInSection(UITableView tableView, nint section)

@@ -3,6 +3,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -154,29 +155,50 @@
                                 <rect key="frame" x="20" y="70" width="374" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2277" style="IBUITableViewCellStyleSubtitle" textLabel="2612" detailTextLabel="2613" reuseIdentifier="rssitemcell">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="2277" reuseIdentifier="rssitemcell" rowHeight="315" customClass="RssItemCell">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="315"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2277" id="2278">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="315"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2612">
-                                                    <rect key="frame" x="15" y="5" width="33" height="20.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3623" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                                                    <rect key="frame" x="10" y="10" width="354" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2613">
-                                                    <rect key="frame" x="15" y="25.5" width="44" height="14.5"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3624" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                                                    <rect key="frame" x="64" y="248" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="3626" translatesAutoresizingMaskIntoConstraints="NO" misplaced="YES" ambiguous="YES">
+                                                    <rect key="frame" x="100" y="38" width="174" height="174"/>
+                                                    <constraints>
+                                                        <constraint id="3639" firstAttribute="width" secondItem="3626" secondAttribute="height" multiplier="1:1"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
+                                            <constraints>
+                                                <constraint id="3627" firstItem="3623" firstAttribute="top" secondItem="2278" secondAttribute="top" constant="10"/>
+                                                <constraint id="3628" firstItem="3623" firstAttribute="leading" secondItem="2278" secondAttribute="leading" constant="10"/>
+                                                <constraint id="3629" firstAttribute="trailing" secondItem="3623" secondAttribute="trailing" constant="10"/>
+                                                <constraint id="3631" firstItem="3626" firstAttribute="leading" secondItem="2278" secondAttribute="leading" constant="100"/>
+                                                <constraint id="3632" firstAttribute="trailing" secondItem="3626" secondAttribute="trailing" constant="100"/>
+                                                <constraint id="3633" firstItem="3624" firstAttribute="leading" secondItem="2278" secondAttribute="leading" constant="10"/>
+                                                <constraint id="3634" firstAttribute="trailing" secondItem="3624" secondAttribute="trailing" constant="10"/>
+                                                <constraint id="3635" firstItem="3624" firstAttribute="top" secondItem="3626" secondAttribute="bottom" constant="10"/>
+                                                <constraint id="3636" firstAttribute="bottom" secondItem="3624" secondAttribute="bottom" constant="10"/>
+                                                <constraint id="3640" firstItem="3626" firstAttribute="top" secondItem="3623" secondAttribute="bottom" constant="10"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="image" destination="3626" id="name-outlet-3626"/>
+                                            <outlet property="title" destination="3623" id="name-outlet-3623"/>
+                                            <outlet property="content" destination="3624" id="name-outlet-3624"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

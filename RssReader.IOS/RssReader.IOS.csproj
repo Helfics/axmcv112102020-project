@@ -75,6 +75,9 @@
       <PackageReference Include="Microsoft.Toolkit.Parsers">
         <Version>6.1.1</Version>
       </PackageReference>
+      <PackageReference Include="Xamarin.FFImageLoading">
+        <Version>2.4.11.982</Version>
+      </PackageReference>
     </ItemGroup>
     <ItemGroup>
         <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
@@ -152,6 +155,10 @@
           <DependentUpon>RssItemsViewController.cs</DependentUpon>
         </Compile>
         <Compile Include="Adapters\RssItemTableViewSource.cs" />
+        <Compile Include="Adapters\RssItemCell.cs" />
+        <Compile Include="Adapters\RssItemCell.designer.cs">
+          <DependentUpon>RssItemCell.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\RssReader.Common\RssReader.Common.csproj">

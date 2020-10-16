@@ -1,4 +1,5 @@
 ﻿using Foundation;
+using RssReader.Common.Entities;
 using RssReader.Common.Services;
 using RssReader.IOS.Adapters;
 using System;
@@ -49,6 +50,13 @@ namespace RssReader.IOS.ViewControllers
 
 
             rsssourceAdapter.Add(item);
+
+            rsssourcestableview.ReloadData();
+        }
+
+        public void OnRssSourceDeleted(RssSource item)
+        {
+            rssReaderService.DeleteRssSource(item.Id);
 
             rsssourcestableview.ReloadData();
         }
