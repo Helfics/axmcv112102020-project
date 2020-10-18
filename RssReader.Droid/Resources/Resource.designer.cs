@@ -1770,7 +1770,16 @@ namespace RssReader.Droid
 			public const int abc_config_actionMenuItemAllCaps = 2130968578;
 			
 			// aapt resource value: 0x7F040003
-			public const int mtrl_btn_textappearance_all_caps = 2130968579;
+			public const int enable_system_alarm_service_default = 2130968579;
+			
+			// aapt resource value: 0x7F040004
+			public const int enable_system_job_service_default = 2130968580;
+			
+			// aapt resource value: 0x7F040005
+			public const int mtrl_btn_textappearance_all_caps = 2130968581;
+			
+			// aapt resource value: 0x7F040006
+			public const int workmanager_test_configuration = 2130968582;
 			
 			static Boolean()
 			{
@@ -4327,28 +4336,31 @@ namespace RssReader.Droid
 			public const int hide_bottom_view_on_scroll_behavior = 2131623983;
 			
 			// aapt resource value: 0x7F0E0030
-			public const int mtrl_chip_close_icon_content_description = 2131623984;
+			public const int home_header = 2131623984;
 			
 			// aapt resource value: 0x7F0E0031
-			public const int password_toggle_content_description = 2131623985;
+			public const int mtrl_chip_close_icon_content_description = 2131623985;
 			
 			// aapt resource value: 0x7F0E0032
-			public const int path_password_eye = 2131623986;
+			public const int password_toggle_content_description = 2131623986;
 			
 			// aapt resource value: 0x7F0E0033
-			public const int path_password_eye_mask_strike_through = 2131623987;
+			public const int path_password_eye = 2131623987;
 			
 			// aapt resource value: 0x7F0E0034
-			public const int path_password_eye_mask_visible = 2131623988;
+			public const int path_password_eye_mask_strike_through = 2131623988;
 			
 			// aapt resource value: 0x7F0E0035
-			public const int path_password_strike_through = 2131623989;
+			public const int path_password_eye_mask_visible = 2131623989;
 			
 			// aapt resource value: 0x7F0E0036
-			public const int search_menu_title = 2131623990;
+			public const int path_password_strike_through = 2131623990;
 			
 			// aapt resource value: 0x7F0E0037
-			public const int status_bar_notification_info_overflow = 2131623991;
+			public const int search_menu_title = 2131623991;
+			
+			// aapt resource value: 0x7F0E0038
+			public const int status_bar_notification_info_overflow = 2131623992;
 			
 			static String()
 			{

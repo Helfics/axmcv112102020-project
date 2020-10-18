@@ -26,6 +26,7 @@
         <MtouchArch>x86_64</MtouchArch>
         <MtouchLink>None</MtouchLink>
         <MtouchDebug>true</MtouchDebug>
+        <CodesignKey>iPhone Distribution</CodesignKey>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
         <DebugType>none</DebugType>
@@ -35,6 +36,7 @@
         <WarningLevel>4</WarningLevel>
         <MtouchLink>None</MtouchLink>
         <MtouchArch>x86_64</MtouchArch>
+        <CodesignKey>Apple Development: mickael.metesreau@gmail.com (8Q9A34C959)</CodesignKey>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
         <DebugSymbols>true</DebugSymbols>
@@ -46,7 +48,7 @@
         <WarningLevel>4</WarningLevel>
         <MtouchArch>ARM64</MtouchArch>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-        <CodesignKey>iPhone Developer</CodesignKey>
+        <CodesignKey>iPhone Distribution</CodesignKey>
         <MtouchDebug>true</MtouchDebug>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
@@ -57,7 +59,8 @@
         <WarningLevel>4</WarningLevel>
         <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
         <MtouchArch>ARM64</MtouchArch>
-        <CodesignKey>iPhone Developer</CodesignKey>
+        <CodesignKey>iPhone Distribution</CodesignKey>
+        <BuildIpa>true</BuildIpa>
     </PropertyGroup>
     <ItemGroup>
         <Reference Include="System" />

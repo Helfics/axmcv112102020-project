@@ -17,7 +17,7 @@ using Xamarin.Essentials;
 
 namespace RssReader.Droid
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme")]
+    [Activity(Label = "@string/app_name", Icon = "dsasa", Theme = "@style/AppTheme")]
     public class RssItemsActivity : AppCompatActivity
     {
         private RssReaderService rssReaderService;

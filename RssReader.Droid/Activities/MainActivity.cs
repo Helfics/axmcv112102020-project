@@ -1,4 +1,5 @@
-﻿using Android.App;
+﻿using System;
+using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Runtime;
@@ -7,8 +8,10 @@ using Android.Support.V4.Widget;
 using Android.Support.V7.App;
 using Android.Views;
 using Android.Widget;
+using AndroidX.Work;
 using RssReader.Common.Services;
 using RssReader.Droid.Adapters;
+using RssReader.Droid.Services;
 using static Android.Widget.AdapterView;
 
 namespace RssReader.Droid
@@ -63,7 +66,7 @@ namespace RssReader.Droid
 
             SetSupportActionBar(toolbar);
 
-            SupportActionBar.Title = "Rss Reader";
+            SupportActionBar.Title = GetString(Resource.String.home_header);
 
             SupportActionBar.SetHomeButtonEnabled(true);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -84,6 +87,12 @@ namespace RssReader.Droid
             navigationView.NavigationItemSelected += NavigationView_NavigationItemSelected;
 
             RegisterForContextMenu(rssSourcesListView);
+
+            var pr = PeriodicWorkRequest.Builder.From<SyncWorker>(TimeSpan.FromSeconds(15))
+                .AddTag("fr.orsys.rssreader.syncworker")
+                .Build();
+
+            WorkManager.Instance.EnqueueUniquePeriodicWork("fr.orsys.rssreader.syncworker", ExistingPeriodicWorkPolicy.Replace, pr);
         }
 
         public override void OnCreateContextMenu(IContextMenu menu, View v, IContextMenuContextMenuInfo menuInfo)
